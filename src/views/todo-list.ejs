@@ -7,11 +7,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="css/todo-list.css">
+    <script type="module" src="/js/todo-list.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
 </head>
 <body>
     <div class="container">
         <h1 class="header">Todo List</h1>
-        <p>List of todos!</p>
+        
+        <form action="/addTask" method="POST">
+            <div class="mb-3">
+              <label for="taskToDo" class="form-label">Task Name</label>
+              <input type="text" class="form-control" name="description">
+            </div>
+            <button type="submit" class="btn btn-primary pull-right">Create</button>
+        </form>
+        <div id='todo-list'>
+            <p>List of todos!</p>
+            <ul class="timeline">
+                <% for (var i = 0; i < tasks.length; i++) { %>
+                    <li >
+                        <span><%= tasks[i].description %></span> 
+                        <a class="waves-effect waves-light btn-small float-right button shareTask" data-id="<%= tasks[i]._id %>">Share</a>
+                        <% if (!tasks[i].completed) { %> 
+                            <a class="waves-effect waves-light btn-small float-right button deleteTask" data-id="<%= tasks[i]._id %>">Delete</a>
+                            <a class="waves-effect waves-light btn-small float-right button markTaskAsCompleted" data-id="<%= tasks[i]._id %>">Completed</a>
+                            <a class="waves-effect waves-light btn-small float-right button updateTask" data-id="<%= tasks[i]._id %>" href="todo-list/<%= tasks[i]._id %>">Update</a>
+                        <% } %>
+                        <hr>
+                    </li>
+                <% } %>
+            </ul>
+        </div>
     </div>
 </body>
 </html>

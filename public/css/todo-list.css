@@ -1,0 +1,16 @@
+
+.float-right {
+    float: right !important;
+}
+
+.markAsCompleted {
+    float: right !important;
+    height: 20px;
+    
+}
+.button.btn-small {
+    height: 20px;
+    line-height: 22px;
+    font-size: 10px;
+    margin-right: 10px;
+}
