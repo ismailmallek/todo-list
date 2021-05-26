@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Todo List</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="css/todo-list.css">
+        <script type="module" src="/js/todo-list.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="header">Edit Task</h1>
+            
+            <form action="/editTask/<%= task._id %>" method="POST">
+                <div class="mb-3">
+                <label for="taskToDo" class="form-label">Task Name</label>
+                <input type="text" class="form-control" name="description" value="<%= task.description %>">
+                </div>
+                <button type="submit" class="btn btn-primary pull-right">Update</button>
+            </form>
+        </div>
+    </body>
+</html>
