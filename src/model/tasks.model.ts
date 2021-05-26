@@ -4,7 +4,10 @@ import MongoosePaginate from "mongoose-paginate";
 const commentSchema = new Mongoose.Schema({
     comment: String,
     createdAt: Date,
+    userId: String,
+    userName: String,
 });
+
 const taskSchema = new Mongoose.Schema({
     comments: {
         default: undefined,
@@ -15,6 +18,10 @@ const taskSchema = new Mongoose.Schema({
         required: true,
         type: Boolean,
     },
+    completedAt: {
+        required: false,
+        type: Date,
+    },
     createdAt: {
         required: true,
         type: Date,
@@ -23,12 +30,24 @@ const taskSchema = new Mongoose.Schema({
         required: true,
         type: String,
     },
+    shared: {
+        required: false,
+        type: Boolean,
+    },
+    sharedAt: {
+        required: false,
+        type: Date,
+    },
     updatedAt: {
         required: false,
         type: Date,
     },
     userId: {
         required: true,
+        type: String,
+    },
+    userName: {
+        required: false,
         type: String,
     },
 });

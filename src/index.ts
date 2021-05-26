@@ -15,7 +15,7 @@ const port = process.env.SERVER_PORT;
 const app = Express();
 
 const uri: string = "mongodb://localhost:27017/todo-list";
-Mongoose.connect(uri, { useNewUrlParser: true, useFindAndModify: false }, (err) => {
+Mongoose.connect(uri, { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false }, (err) => {
   if (err) {
     console.log(err);
   } else {
