@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="css/todo-list.css">
     <script type="module" src="/js/todo-list.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-
 </head>
 <body>
+    <%- include('partials/nav'); -%>
     <div class="container">
         <h1 class="header">Todo List</h1>
         
@@ -21,15 +21,19 @@
               <label for="taskToDo" class="form-label">Task Name</label>
               <input type="text" class="form-control" name="description">
             </div>
-            <button type="submit" class="btn btn-primary pull-right">Create</button>
+            <button type="submit" class="btn btn-primary float-right">Create</button>
         </form>
-        <div id='todo-list'>
-            <p>List of todos!</p>
+        <div id='todo-list' style="margin-top: 70Px;">
+            <h5 style="color: #55a89d;">My Todo List</h5>
             <ul class="timeline">
                 <% for (var i = 0; i < tasks.length; i++) { %>
                     <li >
-                        <span><%= tasks[i].description %></span> 
-                        <a class="waves-effect waves-light btn-small float-right button shareTask" data-id="<%= tasks[i]._id %>">Share</a>
+                        <span><%= tasks[i].description %></span>
+                        <% if (tasks[i].shared) { %>
+                            <a class="waves-effect waves-light btn-small float-right button unshareTask" data-id="<%= tasks[i]._id %>">Unshare</a>
+                        <% } else { %>
+                            <a class="waves-effect waves-light btn-small float-right button shareTask" data-id="<%= tasks[i]._id %>">Share</a>
+                        <% } %>
                         <% if (!tasks[i].completed) { %> 
                             <a class="waves-effect waves-light btn-small float-right button deleteTask" data-id="<%= tasks[i]._id %>">Delete</a>
                             <a class="waves-effect waves-light btn-small float-right button markTaskAsCompleted" data-id="<%= tasks[i]._id %>">Completed</a>

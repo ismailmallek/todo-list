@@ -1,8 +1,9 @@
 <nav>
-    <div class="nav-wrapper">
-        <a href="/" class="brand-logo"><% if ( user ) { %><%= user.name %>'s <% } %>Todo List</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
+    <div class="nav-wrapper" style="background-color: #55a89d;">
+        <span style="margin-left: 65px;"><% if ( user ) { %><%= user.name %> <% } %></span>
+        <ul id="nav-mobile" class="float-right" style="float: right;">
             <li><a href="/todo-list">Todo List</a></li>
+            <li><a href="/shared-tasks">Shared Tasks</a></li>
             <% if ( isAuthenticated ) { %>
             <li><a href="/logout">Logout</a></li>
             <% } %>

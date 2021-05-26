@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Todo List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="css/todo-list.css">
+    <script type="module" src="/js/shared-tasks.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+</head>
+<body>
+    <%- include('partials/nav'); -%>
+    <div class="container">
+        <h1 class="header">Shared Tasks</h1>
+
+        <div id='shared-tasks'>
+            <ul class="timeline">
+                <% for (var i = 0; i < sharedTasks.length; i++) { %>
+                    <li >
+                        <h5 style="color: #55a89d;"><%= sharedTasks[i].userName %></h5>
+                        <div style="padding-left: 20px;">
+                            <ul class="timeline">
+                                <% for (var j = 0; j < sharedTasks[i].tasks.length; j++) { %>
+                                    <li>
+                                        <div class="showForm"><%= sharedTasks[i].tasks[j].description %></div>
+                                        <div class="hideForm" >
+                                            <% if (sharedTasks[i].tasks[j].comments && sharedTasks[i].tasks[j].comments.length > 0) { %>
+                                                <div style="padding-left: 20px;">
+                                                    <table style="width:100%">
+                                                        <% for (var k = 0; k < sharedTasks[i].tasks[j].comments.length; ++k) { %>
+                                                            <ul>
+                                                                <li>
+                                                                    <tr style="color:slategray;">
+                                                                    <td style="width: 150px; font-weight: bold;"><%= sharedTasks[i].tasks[j].comments[k].userName %>:</td>
+                                                                    <td><%= sharedTasks[i].tasks[j].comments[k].comment %></td>
+                                                                    </tr>
+                                                                </li>
+                                                            </ul>
+                                                        <% } %>
+                                                    </table>
+                                                </div>
+                                            <% } %>
+                                            <form action="/addComment" method="POST" style="height: 100px">
+                                                <input type="text" class="form-control" name="comment" placeholder="Tape your comment here">
+                                                <input type="text" value="<%= sharedTasks[i].tasks[j]._id %>" style="display: none;" name="taskId">
+                                                <button type="submit" class="btn btn-primary float-right">Send</button>
+                                            </form>
+                                        </div>
+                                        <hr style="opacity: 0.5;">
+                                    </li>
+                                <% } %>
+                            </ul>
+                        </div>
+                    </li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
